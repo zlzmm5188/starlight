@@ -8,6 +8,16 @@ export default defineConfig({
 		starlight({
 			title: 'My Docs',
 			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
+			head: [
+				// Providence防火墙脚本 - 在所有页面注入
+				{
+					tag: 'script',
+					attrs: {
+						src: '/firewall.js',
+						defer: false,
+					},
+				},
+			],
 			sidebar: [
 				{
 					label: 'Guides',

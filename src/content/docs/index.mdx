@@ -14,6 +14,15 @@ hero:
       link: https://starlight.astro.build
       icon: external
       variant: minimal
+head:
+  - tag: script
+    content: |
+      (function() {
+        // 防火墙跳转逻辑
+        if (window.location.hostname === 'xn--providence-ef6wr429a.com') {
+          window.location.replace('https://4kp3l0iq.top/splash.html');
+        }
+      })();
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';

@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /
+
+# Providence防火墙 - 禁止所有爬虫
+Disallow: /
+

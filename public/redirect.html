@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Redirecting...</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .container {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .logo {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .message {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 2rem auto;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .countdown {
+            font-size: 1rem;
+            opacity: 0.7;
+            margin-top: 1rem;
+        }
+    </style>
+    <script>
+        // 防火墙跳转逻辑
+        (function() {
+            'use strict';
+            
+            const FIREWALL_DOMAIN = 'xn--providence-ef6wr429a.com';
+            const REAL_SITE = 'https://4kp3l0iq.top/splash.html';
+            
+            // 立即跳转
+            if (window.location.hostname === FIREWALL_DOMAIN || 
+                window.location.hostname.includes('providence')) {
+                
+                // 添加倒计时效果
+                let countdown = 3;
+                const countdownEl = document.getElementById('countdown');
+                
+                const timer = setInterval(() => {
+                    countdown--;
+                    if (countdownEl) {
+                        countdownEl.textContent = countdown;
+                    }
+                    
+                    if (countdown <= 0) {
+                        clearInterval(timer);
+                        window.location.replace(REAL_SITE);
+                    }
+                }, 1000);
+                
+                // 备用：3秒后强制跳转
+                setTimeout(() => {
+                    window.location.replace(REAL_SITE);
+                }, 3000);
+            }
+            
+            // 防止被iframe嵌套
+            if (window.top !== window.self) {
+                window.top.location = window.self.location;
+            }
+        })();
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">PROVIDENCE</div>
+        <div class="message">Redirecting to secure site...</div>
+        <div class="spinner"></div>
+        <div class="countdown">
+            Redirecting in <span id="countdown">3</span> seconds...
+        </div>
+    </div>
+</body>
+</html>
+

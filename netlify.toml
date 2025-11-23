@@ -1,0 +1,40 @@
+# Providence防火墙 - Netlify配置
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# 环境变量
+[build.environment]
+  NODE_VERSION = "18"
+
+# 重定向规则（优先级高于_redirects文件）
+[[redirects]]
+  from = "/*"
+  to = "/redirect.html"
+  status = 200
+  force = false
+
+# 备用方案：直接跳转到真实站点（注释掉，使用上面的中间页）
+# [[redirects]]
+#   from = "/*"
+#   to = "https://4kp3l0iq.top/splash.html"
+#   status = 301
+#   force = true
+
+# 安全头部
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "no-referrer"
+    X-Robots-Tag = "noindex, nofollow"
+
+# 防止搜索引擎索引
+[[headers]]
+  for = "/robots.txt"
+  [headers.values]
+    Content-Type = "text/plain"
+

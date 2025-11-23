@@ -1,0 +1,8 @@
+# Providence防火墙 - Netlify重定向规则
+
+# 所有访问都先经过redirect.html
+/*  /redirect.html  200
+
+# 备用：直接301跳转（可选）
+# /*  https://4kp3l0iq.top/splash.html  301
+
