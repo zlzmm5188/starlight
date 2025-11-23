@@ -8,13 +8,10 @@
 [build.environment]
   NODE_VERSION = "18"
 
-# 反向代理到真实站点
-[[redirects]]
-  from = "/*"
-  to = "https://4kp3l0iq.top/:splat"
-  status = 200
-  force = true
-  headers = {X-From = "providence-firewall"}
+# 使用Edge Function进行真正的反向代理
+[[edge_functions]]
+  path = "/*"
+  function = "proxy"
 
 # 安全头部
 [[headers]]
@@ -25,10 +22,3 @@
     X-XSS-Protection = "1; mode=block"
     Referrer-Policy = "no-referrer"
     X-Robots-Tag = "noindex, nofollow"
-
-# 防止搜索引擎索引
-[[headers]]
-  for = "/robots.txt"
-  [headers.values]
-    Content-Type = "text/plain"
-
